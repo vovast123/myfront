@@ -1,0 +1,78 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block title%}
+    Items
+{%endblock title%}
+
+
+{%block content%}
+
+<h1 class="text-center secfonts m-3 wow fadeInLeft">Latest arrivals especially<span class="badge badge-secondary">  for you) </span>  <img src="{% static "sf.gif" %}" style="height: 100px; width: 100px;" alt=""> </h1>
+{%for x in post%}
+{%if x.rare == 'Common'%}
+<h2 class="text-center secfonts m-5 wow fadeInLeft" >All items with rarity - <em class="common">{{x.rare}}</em></h2>
+{%elif x.rare == 'Uncommon' %}
+<h2 class="text-center  secfonts m-5 wow fadeInLeft" >All items with rarity -<em class="uncommon">{{x.rare}}</em></h2>
+{%elif x.rare == 'Rare' %}
+<h2 class="text-center  secfonts m-5 wow fadeInLeft" >All items with rarity - <em class="rare">{{x.rare}}</em></h2>
+{%elif x.rare == 'Mythical' %}
+<h2 class="text-center  secfonts m-5 wow fadeInLeft" >All items with rarity - <em class="mythical">{{x.rare}}</em></h2>
+{%elif x.rare == 'Legendary' %}
+<h2 class="text-center  secfonts m-5 wow fadeInLeft" >All items with rarity - <em class="legendary">{{x.rare}}</em></h2>
+{%elif x.rare == 'Immortal' %}
+<h2 class="text-center secfonts m-5 wow fadeInLeft" >All items with rarity - <em class="immortal">{{x.rare}}</em> </h2>
+{%elif x.rare == 'Arcana' %}
+<h2 class="text-center  secfonts m-5 wow fadeInLeft" >All items with rarity - <em class="arcana">{{x.rare}}</em></h2>
+{%elif x.rare == 'Ancient' %}
+<h2 class="text-center  secfonts m-5 wow fadeInLeft" >All items with rarity - <em class="ancient">{{x.rare}}</em></h2>
+{%endif%}
+{%endfor%}
+<br><br><br>
+
+<div class="container">
+    <div class="row">
+      {%for x in new_post%}
+      <div class="col mt-3">
+        <div class="card  text-white bg-dark wow fadeInDown " style="width: 18rem;">
+          <img class="card-img-top" src="{{ x.image.url }}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title ">{{x.name}}</h5>
+            <p class="card-text ">{{x.text}}</p>
+            {%if x.rare == 'Common'%}
+            <p class="card-text common">{{x.rare}}</p>
+            {%elif x.rare == 'Uncommon' %}
+            <p class="card-text uncommon">{{x.rare}}</p>
+            {%elif x.rare == 'Rare' %}
+            <p class="card-text rare">{{x.rare}}</p>
+            {%elif x.rare == 'Mythical' %}
+            <p class="card-text mythical">{{x.rare}}</p>
+            {%elif x.rare == 'Legendary' %}
+            <p class="card-text legendary">{{x.rare}}</p>
+            {%elif x.rare == 'Immortal' %}
+            <p class="card-text immortal">{{x.rare}}</p>
+            {%elif x.rare == 'Arcana' %}
+            <p class="card-text arcana">{{x.rare}}</p>
+            {%elif x.rare == 'Ancient' %}
+            <p class="card-text ancient">{{x.rare}}</p>
+            {%endif%}
+            <p class="card-text fonts-h">{{x.hero}}</p>
+            {%if x.price == 0%}
+            <a href="" class=" btn btn-danger">Can't be bought</a>
+
+            {%else%}
+            <em class="card-text ">{{x.price}} usd</em>
+            <p></p>
+            <a href="{%url 'info' x.id %}" class=" btn btn-danger">Buy</a>
+
+
+            {%endif%}
+          </div>
+        </div>
+      </div>
+      {%endfor%}
+    </div>
+  </div>
+
+
+{%endblock content%}

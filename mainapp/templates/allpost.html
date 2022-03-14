@@ -1,0 +1,73 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block title%}
+    All items
+{%endblock title%}
+
+
+
+{%block content%}
+<h1 class="text-center secfonts m-3 wow fadeInLeft">All items in our pantry <span class="badge badge-secondary">  for you) </span>  <img src="{% static "kiti.gif" %}" style="height: 100px; width: 120px;" alt=""> </h1>
+
+<div class="container">
+    <div class="row">
+      {%for x in page_obj%}
+      <div class="col mt-3">
+        <div class="card  text-white bg-dark wow fadeInDown " style="width: 18rem;">
+          <img class="card-img-top" src="{{ x.image.url }}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title ">{{x.name}}</h5>
+            <p class="card-text ">{{x.text}}</p>
+            {%if x.rare == 'Common'%}
+            <p class="card-text common">{{x.rare}}</p>
+            {%elif x.rare == 'Uncommon' %}
+            <p class="card-text uncommon">{{x.rare}}</p>
+            {%elif x.rare == 'Rare' %}
+            <p class="card-text rare">{{x.rare}}</p>
+            {%elif x.rare == 'Mythical' %}
+            <p class="card-text mythical">{{x.rare}}</p>
+            {%elif x.rare == 'Legendary' %}
+            <p class="card-text legendary">{{x.rare}}</p>
+            {%elif x.rare == 'Immortal' %}
+            <p class="card-text immortal">{{x.rare}}</p>
+            {%elif x.rare == 'Arcana' %}
+            <p class="card-text arcana">{{x.rare}}</p>
+            {%elif x.rare == 'Ancient' %}
+            <p class="card-text ancient">{{x.rare}}</p>
+            {%endif%}
+            <p class="card-text fonts-h">{{x.hero}}</p>
+            {%if x.price == 0%}
+            <p class=" btn btn-danger">Can't be bought</p>
+
+            {%else%}
+            <em class="card-text ">{{x.price}} usd</em>
+            <p></p>
+            <a href="{%url 'info' x.id %}" class=" btn btn-danger">Buy</a>
+
+
+            {%endif%}
+          </div>
+        </div>
+      </div>
+      {%endfor%}
+    </div>
+  </div>
+
+
+<div class="center-center mt-5">
+    <nav aria-label="Page navigation ">
+        <ul class="pagination">
+        {%for p in page_obj.paginator.page_range%}  
+        {%if page_obj.number == p%}
+        <li class="page-item"><a class="page-link" href="?page={{p}}">{{p}}</a></li>
+        {%elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+        <li class="page-item"><a class="page-link" href="?page={{p}}">{{p}}</a></li>
+        {%endif%}
+        {%endfor%}
+        </ul>
+      </nav>
+    
+</div>
+
+{%endblock content%}
