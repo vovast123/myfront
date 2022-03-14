@@ -25,23 +25,7 @@
     </div>
     <div class="row">
         <div class="col mt-3">
-            {%if new_post.rare == 'Common'%}
-            <h2 class="secfonts p-4 wow fadeInLeft" >Rarity : <em class="common">{{new_post.rare}}</em></h2>
-            {%elif new_post.rare == 'Uncommon' %}
-            <h2 class="secfonts p-4 wow fadeInLeft" >Rarity :<em class="uncommon">{{new_post.rare}}</em></h2>
-            {%elif new_post.rare == 'Rare' %}
-            <h2 class="secfonts p-4 wow fadeInLeft" >Rarity : <em class="rare">{{new_post.rare}}</em></h2>
-            {%elif new_post.rare == 'Mythical' %}
-            <h2 class="secfonts p-4 wow fadeInLeft" >Rarity : <em class="mythical">{{new_post.rare}}</em></h2>
-            {%elif new_post.rare == 'Legendary' %}
-            <h2 class="secfonts p-4 wow fadeInLeft" >Rarity : <em class="legendary">{{new_post.rare}}</em></h2>
-            {%elif new_post.rare == 'Immortal' %}
-            <h2 class="ecfonts p-4 wow fadeInLeft" >Rarity : <em class="immortal">{{new_post.rare}}</em> </h2>
-            {%elif new_post.rare == 'Arcana' %}
-            <h2 class="secfonts p-4 wow fadeInLeft" >Rarity : <em class="arcana">{{new_post.rare}}</em></h2>
-            {%elif new_post.rare == 'Ancient' %}
-            <h2 class="secfonts p-4 wow fadeInLeft" >Rarity : <em class="ancient">{{new_post.rare}}</em></h2>
-            {%endif%}
+            <h2 class="p-4 fonts-h wow fadeInLeft {{new_post.rare.rare}} wow fadeInLeft">{{new_post.rare}}</h2>
         </div>
     </div>
     <div class="row">

@@ -27,12 +27,17 @@ class Post(models.Model):
     time = models.DateTimeField('time', default=timezone.now)
     url = models.SlugField(max_length=130, unique=True)
 
+    def get_absolute_url(self):
+        return reverse("post_detail", kwargs={"slug":self.url})
+
     def __str__(self):
         return self.name
 
     class Meta:
         verbose_name = 'скин'
         verbose_name_plural = 'скины'
+
+    
 
 
 
